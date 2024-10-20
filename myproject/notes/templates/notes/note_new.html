@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    New Note
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>New Note</h1>
+        {% comment %} Make sure to add the encoding type of 
+        "mulitpart/form-data" because we are
+        getting an image input {% endcomment %}
+        <form action="/notes/new-note/" method="POST"
+        enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+{% endblock %}

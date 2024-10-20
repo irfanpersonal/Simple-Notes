@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Notes
+{% endblock %}
+
+{% block content %}
+    <h1 style="background-color: blue; color: red;">Notes</h1>
+    <section>
+        <hr/>
+        {% if notes|length == 0 %}
+            <h1>No Notes Found...</h1>
+        {% endif %}
+        {% for note in notes %}
+            <article>
+                <h2>
+                    <a href="{% url 'notes:page' note_slug=note.slug %}">
+                        {{ note.title }}
+                    </a>
+                </h2>
+                <p>{{ note.createdAt }} by {{ note.user }}</p>
+                <p>{{ note.body }}</p>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

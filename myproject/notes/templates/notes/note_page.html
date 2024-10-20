@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ note.title }}
+{% endblock %}
+
+{% block content %}
+    <h1 style="background-color: blue; color: red;">{{ note.title }}</h1>
+    <section>
+        <img src="{{ note.background.url }}" style="width: 200px; height: 200px;"/>
+        <p>{{ note.createdAt }}</p>
+        <p>{{ note.body }}</p>
+        <a href="{% url 'notes:edit' note_slug=note.slug %}"><button>Edit</button></a>
+        {% comment %} HTML Forms only support GET and POST {% endcomment %}
+        <form action="{% url 'notes:delete' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ note.id }}"/>
+            <button>Delete</button>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Note - Register
+{% endblock %}
+
+{% block content %}
+    <h1>Register a New User</h1>
+    <hr/>
+    <a href="{% url 'auth' %}">Back</a>
+    {% comment %} Now that we have access to the "form" by invoking
+    the "UserCreationForm" we MUST reference it within
+    a opening and closing "form" tag. {% endcomment %}
+    <form action="/users/register/" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

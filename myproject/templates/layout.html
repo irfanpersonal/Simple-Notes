@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Notes
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/> 
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'notes:list' %}">Notes</a>
+            <a href="{% url 'notes:new-note' %}">New Note</a>
+            <form action="/users/logout/" method="POST">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'auth' %}">Auth</a>
+        {% endif %}
+    </nav>
+    <main>
+        {% block content %}
+            
+        {% endblock %}
+    </main> 
+</body>
+</html>

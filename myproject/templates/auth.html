@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Notes - Auth
+{% endblock %}
+
+{% block content %}
+    <h1>Auth</h1>
+    <div>
+        <a href="{% url 'users:login' %}">Have an account? Log in now</a>
+    </div>
+    <div>
+        <a href="{% url 'users:register' %}">Don't have an account? Sign Up</a>
+    </div>
+{% endblock %}
